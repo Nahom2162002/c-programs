@@ -40,7 +40,7 @@ void create_account(string username, string password) {
 	int questionsLength = 0;
 
 	file.open("logininfo.txt", ios::out | ios::in);
-	file << username << password << endl;
+	file << username << " " << password << endl;
     file.open("questions.txt");
 
 	while (file.is_open()) {
@@ -57,7 +57,8 @@ void create_account(string username, string password) {
 	cout << "Answer:";
 	cin >> securityanswer;
 
-	file << securityquestion << securityanswer << endl;
+	file << securityquestion << " " << securityanswer << endl;
+	file.close();
 }
 
 string forgotusername(string securityquestion, string securityanswer) {
@@ -108,7 +109,7 @@ int main() {
 	cout << "Logging back in or creating an account? ('Login' for logging in, 'Creating' for creating an account')";
 	cin >> choice;
 
-    if (choice.compare("Login")) {
+    if (choice.compare("Login") == 0) {
 		cout << "Username:";
 		cin >> username;
 		cout << "Password:";
@@ -117,8 +118,8 @@ int main() {
 		login(username, password);
 	}
 
-	else if (choice.compare("Creating")) {
-		cout << "Username";
+	else if (choice.compare("Creating") == 0) {
+		cout << "Username:";
 		cin >> username;
 		cout << "Password:";
 		cin >> password;
